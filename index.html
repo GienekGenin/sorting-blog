@@ -74,7 +74,7 @@
         app.appendChild(tags);
         app.appendChild(cards);
 
-        setDateIndexes();
+
 
         sortElements();
     }
@@ -154,6 +154,7 @@
         console.log(e);
         e.stopPropagation();
         cards.removeChild(e.path[1]);
+        // setDateIndexes();
     }
 
     let selected_tags_arr = [];
@@ -183,10 +184,10 @@
         }
         if (selected && selected.length >= 1) {
             for (let i = 0; i < el_to_sort.length; i++) {
-                checkOneByTags(el_to_sort[i], selected);
-                // console.log(el_to_sort[i].index);
-                sortByDate();
+                // checkOneByTags(el_to_sort[i], selected);
+
             }
+            sortByDate();
         }
     }
 
@@ -246,6 +247,7 @@
     }
 
     function sortByDate() {
+        setDateIndexes();
         let cards = document.getElementsByClassName('card-box');
         let arr = [];
         for (let i = 0; i < cards.length; i++) {
