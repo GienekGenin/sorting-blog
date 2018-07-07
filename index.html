@@ -57,11 +57,13 @@
 
     let app = document.getElementById('app');
     let cards = document.getElementById('cards');
-    cards.addEventListener('click', () => {
-        console.log('click cards');
+    cards.addEventListener('click', (e) => {
+        console.log('click cards', e);
     });
     let tags = document.getElementById('sorting-tags');
-
+    tags.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 
     function createApp(j_data) {
         let tags_arr = getUniqueTags(j_data);
@@ -157,6 +159,7 @@
     let selected_tags_arr = [];
 
     function toggleTag(e) {
+        e.stopPropagation();
         let tag = e.target;
         tag.classList.toggle('selected-tag');
         if (tag.classList.contains('selected-tag')) {
@@ -182,6 +185,7 @@
             for (let i = 0; i < el_to_sort.length; i++) {
                 checkOneByTags(el_to_sort[i], selected);
                 // console.log(el_to_sort[i].index);
+                sortByDate();
             }
         }
     }
@@ -223,7 +227,10 @@
         let sortedDates = dateIndexes.sort(sortNumber);
         for (let i = 0; i < cards.length; i++) {
             for (let c = 0; c < sortedDates.length; c++) {
-                if(cards[i].dateIndex === sortedDates[c]){
+                if (cards[i].dateIndex === sortedDates[c]) {
+                    //remove later!!!!!!!!!!!!!!!!
+                    dates[i].innerText = c;
+                    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     cards[i].dateIndex = c;
                 }
             }
@@ -236,6 +243,22 @@
         let diff = moment.duration(end.diff(start)).asDays();
         // console.log(`Difference is: ${diff}`);
         return Math.floor(diff);
+    }
+
+    function sortByDate() {
+        let cards = document.getElementsByClassName('card-box');
+        let arr = [];
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < cards.length; c++) {
+                if (cards[i].dateIndex === c) {
+                    // console.log(c);
+                    arr[c] = cards[i];
+                }
+            }
+        }
+        for(let i = 0; i < cards.length; i++){
+            swapNodes(cards[i], arr[i]);
+        }
     }
 
 </script>
