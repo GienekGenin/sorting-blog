@@ -26,6 +26,7 @@
     <div id="cards"></div>
 </div>
 <!--<script src="src/index.js"></script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="./dist/bundle.js"></script>
 <script>
     window.onload = () => {
@@ -56,7 +57,7 @@
 
     let app = document.getElementById('app');
     let cards = document.getElementById('cards');
-    cards.addEventListener('click',()=>{
+    cards.addEventListener('click', () => {
         console.log('click cards');
     });
     let tags = document.getElementById('sorting-tags');
@@ -70,6 +71,9 @@
         }
         app.appendChild(tags);
         app.appendChild(cards);
+
+        setDateIndexes();
+
         sortElements();
     }
 
@@ -144,7 +148,7 @@
 
     }
 
-    function deleteElement(e){
+    function deleteElement(e) {
         console.log(e);
         e.stopPropagation();
         cards.removeChild(e.path[1]);
@@ -159,40 +163,81 @@
             selected_tags_arr.push(tag.innerHTML);
         } else {
             for (let i = 0; i < selected_tags_arr.length; i++) {
-                if(tag.innerHTML === selected_tags_arr[i]){
-                    selected_tags_arr.splice(i,1);
+                if (tag.innerHTML === selected_tags_arr[i]) {
+                    selected_tags_arr.splice(i, 1);
                 }
             }
         }
         sortElements(selected_tags_arr);
     }
+
     // sorting functions
 
     function sortElements(selected) {
-        console.log(selected);
-        let order = [];
         let el_to_sort = document.getElementsByClassName('card-box');
-        console.log(el_to_sort[0].childNodes[5].childNodes[0].innerText);
-        for(let i = 0;i<el_to_sort.length;i++){
-            let obj_arr = [];
-            for(let c = 0;c<el_to_sort[i].childNodes[5].childNodes.length;c++){
-                obj_arr.push(el_to_sort[i].childNodes[5].childNodes[c].innerText);
-            }
-            order.push(obj_arr);
-        }
-        console.log(order);
-        // let element_to_sort = document.getElementsByClassName('card-box');
-        // console.log(element_to_sort);
-        // let tags = element_to_sort[0].childNodes[4];
-        // console.log(tags);
+        for (let i = 0; i < el_to_sort.length; i++) {
 
-        function swapNodes(node1, node2) {
-            node2_copy = node2.cloneNode(true);
-            node1.parentNode.insertBefore(node2_copy, node1);
-            node2.parentNode.insertBefore(node1, node2);
-            node2.parentNode.replaceChild(node2, node2_copy);
+        }
+        if (selected && selected.length >= 1) {
+            for (let i = 0; i < el_to_sort.length; i++) {
+                checkOneByTags(el_to_sort[i], selected);
+                // console.log(el_to_sort[i].index);
+            }
         }
     }
+
+    function checkOneByTags(el, _tags) {
+        let counter = 0;
+        for (let i = 0; i < el.childNodes[5].childNodes.length; i++) {
+            for (let c = 0; c < _tags.length; c++) {
+                let one = el.childNodes[5].childNodes[i].innerText;
+                if (one === _tags[c]) {
+                    ++counter;
+                }
+            }
+        }
+        el.index = counter;
+    }
+
+    function swapNodes(node1, node2) {
+        let node2_copy = node2.cloneNode(true);
+        node1.parentNode.insertBefore(node2_copy, node1);
+        node2.parentNode.insertBefore(node1, node2);
+        node2.parentNode.replaceChild(node2, node2_copy);
+    }
+
+    function setDateIndexes() {
+        let dates = document.querySelectorAll('[class^="date"]');
+        let cards = document.getElementsByClassName('card-box');
+        let dateIndexes = [];
+        //cards[i].timeIndex
+        for (let i = 0; i < dates.length; i++) {
+            cards[i].dateIndex = checkHours(dates[i].innerText);
+            dateIndexes.push(checkHours(dates[i].innerText));
+        }
+
+        function sortNumber(a, b) {
+            return a - b;
+        }
+
+        let sortedDates = dateIndexes.sort(sortNumber);
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < sortedDates.length; c++) {
+                if(cards[i].dateIndex === sortedDates[c]){
+                    cards[i].dateIndex = c;
+                }
+            }
+        }
+    }
+
+    function checkHours(_date) {
+        let start = moment(_date, "YYYY-MM-DDTHH:mm:ss.SSSSZ");
+        let end = moment();
+        let diff = moment.duration(end.diff(start)).asDays();
+        // console.log(`Difference is: ${diff}`);
+        return Math.floor(diff);
+    }
+
 </script>
 </body>
 </html>
