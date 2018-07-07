@@ -11,7 +11,28 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-#app {
+#sorting-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  .tag {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: lightblue;
+    &:hover {
+      cursor: pointer;
+      background-color: aquamarine;
+    }
+  }
+  .selected-tag{
+    background-color: gray;
+    :hover{
+      background-color: red;
+    }
+  }
+}
+
+#cards {
   display: grid;
   grid-template-columns: auto auto;
   justify-items: center;
