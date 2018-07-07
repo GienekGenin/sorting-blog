@@ -1,15 +1,23 @@
 import './scss/style.scss';
-import './scripts/data-parser';
+import './scripts/sort-script';
 
-// all json data in this var
-
-let checkData = setInterval(function () {
-    if (window.parent.json_data !== undefined) {
-        console.log(window.parent.json_data);
-        clearInterval(checkData);
-    } else return false;
-}, 100);
-
+// get data from server
+window.onload = () => {
+    fetch('https://api.myjson.com/bins/152f9j')
+        .then(response => {
+            response.json().then(json_data => {
+                createCards(json_data.data);
+                return window.parent.json_data = json_data;
+            })
+        })
+        .catch(err => {
+            console.log('Woooops, shit happens');
+            console.log(err);
+        })
+};
+function setFilter(e){
+    console.log(e);
+}
 // json structure
 /*{
     "title":"Quo repudiandae qui sit.",
@@ -22,46 +30,48 @@ let checkData = setInterval(function () {
     "Sport"]
 }*/
 
-// let card = document.createElement('div');
-// let title = document.createElement('h3');
-// let description = document.createElement('span');
-// let photo = document.createElement('img'); //give it src attr with link on img
-// let date = document.createElement('span');
-// let tags = document.createElement('ul');
-// let tag = document.createElement('li');
-
-setTimeout(function(){
-    createCard(window.parent.json_data.data);
-},4000);
-
 let app = document.getElementById('app');
+
+function createCards(j_data) {
+    for (let i = 0; i < j_data.length; i++) {
+        createCard(j_data[i]);
+    }
+}
 
 function createCard(j_data) {
 
     let card = document.createElement('div');
-    card.setAttribute('class','card-box');
+    card.setAttribute('class', 'card-box');
 
     let title = document.createElement('h3');
-    let titleText = document.createTextNode(j_data[0].title);
+    let titleText = document.createTextNode(j_data.title);
     title.appendChild(titleText);
 
     let description = document.createElement('span');
-    description.setAttribute('class','description');
-    let descriptionText = document.createTextNode(j_data[0].description);
+    description.setAttribute('class', 'description');
+    let descriptionText = document.createTextNode(j_data.description);
     description.appendChild(descriptionText);
 
     let photo = document.createElement('img');
-    photo.setAttribute('src',j_data[0].image);
+    photo.setAttribute('src', j_data.image);
 
     let date = document.createElement('span');
     date.setAttribute('class', 'date');
-    let dateText = document.createTextNode(j_data[0].createdAt);
+    let dateText = document.createTextNode(j_data.createdAt);
     date.appendChild(dateText);
+
+    let tags = document.createElement('ul');
+    for (let i = 0; i < j_data.tags.length; i++) {
+        let tag = document.createElement('li');
+        let tagText = document.createTextNode(j_data.tags[i]);
+        tag.appendChild(tagText);
+        tags.appendChild(tag);
+    }
 
     card.appendChild(title);
     card.appendChild(description);
     card.appendChild(photo);
     card.appendChild(date);
+    card.appendChild(tags);
     app.appendChild(card);
-
 }
