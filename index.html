@@ -154,7 +154,6 @@
         console.log(e);
         e.stopPropagation();
         cards.removeChild(e.path[1]);
-        // setDateIndexes();
     }
 
     let selected_tags_arr = [];
@@ -162,6 +161,7 @@
     function toggleTag(e) {
         e.stopPropagation();
         let tag = e.target;
+        // убрать возможность выбора больше 3 тэгов - тут
         tag.classList.toggle('selected-tag');
         if (tag.classList.contains('selected-tag')) {
             selected_tags_arr.push(tag.innerHTML);
@@ -183,15 +183,46 @@
 
         }
         if (selected && selected.length >= 1) {
+            console.log(selected);
             for (let i = 0; i < el_to_sort.length; i++) {
-                // checkOneByTags(el_to_sort[i], selected);
-
+                setIndexesByTags(el_to_sort[i], selected);
             }
+            swapByTagsAndTime();
+        } else {
+            console.log(selected);
             // sortByDate();
         }
     }
 
-    function checkOneByTags(el, _tags) {
+    function swapByTagsAndTime() {
+        let cards = document.getElementsByClassName('card-box');
+        // get all unique indexes
+        let allTagIndexes = [];
+        let uniqueTagsIndexes;
+        for (let i = 0; i < cards.length; i++) {
+            allTagIndexes.push(cards[i].tagIndex);
+        }
+        uniqueTagsIndexes = allTagIndexes.filter(onlyUnique);
+        let sortedByTagsArr = [];
+        for (let c = 0; c < uniqueTagsIndexes.length; c++) {
+            sortedByTagsArr[c] = [];
+        }
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < uniqueTagsIndexes.length; c++) {
+                if (cards[i].tagIndex === c) {
+                    sortedByTagsArr[c].push(cards[i]);
+                }
+            }
+        }
+        console.log(sortedByTagsArr);
+        let newArr = [];
+        console.log(sortedByTagsArr.length);
+        for (let i = 0; i < sortedByTagsArr.length; i++) {
+            console.log(sortedByTagsArr[i]);
+        }
+    }
+
+    function setIndexesByTags(el, _tags) {
         let counter = 0;
         for (let i = 0; i < el.childNodes[5].childNodes.length; i++) {
             for (let c = 0; c < _tags.length; c++) {
@@ -201,7 +232,7 @@
                 }
             }
         }
-        el.index = counter;
+        el.tagIndex = counter;
     }
 
     function swapNodes(node1, node2) {
@@ -258,7 +289,7 @@
                 }
             }
         }
-        for(let i = 0; i < cards.length; i++){
+        for (let i = 0; i < cards.length; i++) {
             swapNodes(cards[i], arr[i]);
         }
     }
