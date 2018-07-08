@@ -63,7 +63,6 @@
 
     let app = document.getElementById('app');
     let control = document.getElementById('control');
-    let cards_clone = [];
     let tags = document.getElementById('sorting-tags');
     tags.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -81,6 +80,7 @@
         app.appendChild(cards);
 
         setDateIndexes();
+        hideCards();
         // sortByDateUp();
         let retrievedObject = localStorage.getItem('lastAction');
         console.log(JSON.parse(retrievedObject));
@@ -173,8 +173,6 @@
         card.appendChild(date);
         card.appendChild(tags);
         cards.appendChild(card);
-
-        cards_clone.push(card);
     }
 
     function deleteElement(e) {
@@ -309,6 +307,8 @@
             //revert
             // swapNodes(cards[i], arr[cards.length-i-1]);
         }
+        showAll();
+        hideCards();
     }
 
     function setIndexesByTags(el, _tags) {
@@ -396,6 +396,8 @@
             //revert
             // swapNodes(cards[i], arr[cards.length-i-1]);
         }
+        showAll();
+        hideCards();
     }
 
     function sortByDateDown() {
@@ -421,52 +423,56 @@
         for (let i = 0; i < cards.length; i++) {
             swapNodes(cards[i], arr[cards.length - i - 1]);
         }
-
+        showAll();
+        hideCards();
     }
-/*
+
     let scrollCounter = 10;
     window.onscroll = function (event) {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-            if(scrollCounter <= 40){
+            console.log(window.pageYOffset);
+            if (scrollCounter <= 40) {
                 scrollCounter = scrollCounter + 10;
                 showNewCards(scrollCounter);
             }
         }
-        if(window.pageYOffset < 100){
-            hideCards();
+        if (window.pageYOffset < 0) {
+            console.log(window.pageYOffset);
+            // hideCards();
         }
     };
 
     function showNewCards(counter) {
-
-    }
-
-    function hideCards() {
-        scrollCounter = 10;
-    }
-
-    function currentStateOfApp(elements){
-        let count = scrollCounter;
-        let card_container = document.getElementById('cards');
+        console.log('showNewCards');
+        let count = counter;
         let cards = document.getElementsByClassName('card-box');
-        for(let i = 0;i<cards.length;i++){
-            card_container.removeChild(cards[i]);
-        }
-        for(let i = 0;i<elements.length - scrollCounter;i++){
+        for (let i = 0; i < cards.length; i++) {
             count--;
-            if(count >= 0){
-                card_container.appendChild(elements[i]);
+            if (i >= 10 && count >= 0) {
+                cards[i].classList.remove('hide');
             }
         }
     }
 
-    function clone_cards_fun(clone_arr){
-        for(let i = 0;i<cards_clone.length;i++){
-            clone_arr.push(cards_clone[i]);
+    function hideCards() {
+        scrollCounter = 10;
+        let cards = document.getElementsByClassName('card-box');
+        console.log('hideCards', cards.length, scrollCounter);
+        for (let i = 0; i < cards.length; i++) {
+            if (i >= 10) {
+                cards[i].classList.add('hide');
+            }
         }
     }
 
-*/
+    function showAll() {
+        let cards = document.getElementsByClassName('card-box');
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('hide');
+
+        }
+    }
+
 </script>
 </body>
 </html>
