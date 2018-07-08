@@ -1,5 +1,4 @@
 @import "variables";
-@import "cards";
 @import "icons";
 @import "header";
 @import "main";
@@ -15,7 +14,6 @@
 
 html, body {
   font-family: Arial, sans-serif;
-  z-index: 0;
 }
 
 // all content in this container
