@@ -74,7 +74,8 @@
         app.appendChild(tags);
         app.appendChild(cards);
 
-        sortByDate();
+        setDateIndexes();
+        // sortByDate();
 
         sortElements();
     }
@@ -214,11 +215,41 @@
                 }
             }
         }
-        console.log(sortedByTagsArr);
-        let newArr = [];
-        console.log(sortedByTagsArr.length);
+        // console.log(sortedByTagsArr);
+        let clone_nodes_arr = [];
         for (let i = 0; i < sortedByTagsArr.length; i++) {
-            console.log(sortedByTagsArr[i]);
+            let arr = [];
+            for (let c = 0; c < sortedByTagsArr[i].length; c++) {
+                arr.push(sortedByTagsArr[i][c].dateIndex);
+                // console.log(sortedByTagsArr[i][c].dateIndex);
+            }
+            arr = arr.sort(sortNumber);
+            // console.log(arr);
+            for(let c = 0;c<arr.length;c++){
+                // console.log(arr[c]);
+                for(let j =0;j<sortedByTagsArr[i].length;j++){
+                    if(arr[c] === sortedByTagsArr[i][j].dateIndex){
+                        arr[c] = sortedByTagsArr[i][j];
+                    }
+                }
+            }
+            //this is ordered by tags and than by date arr
+            // arr = arr.reverse();
+            // console.log(arr);
+            clone_nodes_arr.push(arr);
+        }
+        // clone_nodes = clone_nodes.reverse();
+        let clone_reverse = [];
+        for(let i = clone_nodes_arr.length - 1;i >= 0;i--){
+            for(let c = 0;c<clone_nodes_arr[i].length;c++){
+                clone_reverse.push(clone_nodes_arr[i][c]);
+            }
+        }
+        // console.log(clone_reverse);
+        for (let i = 0; i < cards.length; i++) {
+            swapNodes(cards[i], clone_reverse[i]);
+            //revert
+            // swapNodes(cards[i], arr[cards.length-i-1]);
         }
     }
 
@@ -242,6 +273,10 @@
         node2.parentNode.replaceChild(node2, node2_copy);
     }
 
+    function sortNumber(a, b) {
+        return a - b;
+    }
+
     function setDateIndexes() {
         let dates = document.querySelectorAll('[class^="date"]');
         let cards = document.getElementsByClassName('card-box');
@@ -252,9 +287,6 @@
             dateIndexes.push(checkHours(dates[i].innerText));
         }
 
-        function sortNumber(a, b) {
-            return a - b;
-        }
 
         let sortedDates = dateIndexes.sort(sortNumber);
         for (let i = 0; i < cards.length; i++) {
@@ -291,6 +323,8 @@
         }
         for (let i = 0; i < cards.length; i++) {
             swapNodes(cards[i], arr[i]);
+            //revert
+            // swapNodes(cards[i], arr[cards.length-i-1]);
         }
     }
 
