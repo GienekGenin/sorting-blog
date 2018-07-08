@@ -63,16 +63,14 @@
 
     let app = document.getElementById('app');
     let control = document.getElementById('control');
-    let cards = document.getElementById('cards');
-    cards.addEventListener('click', (e) => {
-        console.log('click cards', e);
-    });
+    let cards_clone = [];
     let tags = document.getElementById('sorting-tags');
     tags.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 
     function createApp(j_data) {
+        let cards = document.getElementById('cards');
         let tags_arr = getUniqueTags(j_data);
         createTags(tags_arr);
         for (let i = 0; i < j_data.length; i++) {
@@ -109,7 +107,7 @@
                     }
                 }
             }
-        }
+        } else sortByDateUp();
     }
 
     function getUniqueTags(j_data) {
@@ -134,7 +132,7 @@
     }
 
     function createCard(j_data) {
-
+        let cards = document.getElementById('cards');
         let card = document.createElement('div');
         card.setAttribute('class', 'card-box');
 
@@ -176,9 +174,11 @@
         card.appendChild(tags);
         cards.appendChild(card);
 
+        cards_clone.push(card);
     }
 
     function deleteElement(e) {
+        let cards = document.getElementById('cards');
         console.log(e);
         e.stopPropagation();
         cards.removeChild(e.path[1]);
@@ -230,8 +230,8 @@
         for (let i = 0; i < buttons_div.children.length; i++) {
             buttons_div.children[i].setAttribute('class', null);
         }
-        if(element){
-            element.setAttribute('class','selected-button');
+        if (element) {
+            element.setAttribute('class', 'selected-button');
         }
     }
 
@@ -295,8 +295,6 @@
                 }
             }
             //this is ordered by tags and than by date arr
-            // arr = arr.reverse();
-            // console.log(arr);
             clone_nodes_arr.push(arr);
         }
         // clone_nodes = clone_nodes.reverse();
@@ -306,7 +304,6 @@
                 clone_reverse.push(clone_nodes_arr[i][c]);
             }
         }
-        // console.log(clone_reverse);
         for (let i = 0; i < cards.length; i++) {
             swapNodes(cards[i], clone_reverse[i]);
             //revert
@@ -424,8 +421,52 @@
         for (let i = 0; i < cards.length; i++) {
             swapNodes(cards[i], arr[cards.length - i - 1]);
         }
+
+    }
+/*
+    let scrollCounter = 10;
+    window.onscroll = function (event) {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+            if(scrollCounter <= 40){
+                scrollCounter = scrollCounter + 10;
+                showNewCards(scrollCounter);
+            }
+        }
+        if(window.pageYOffset < 100){
+            hideCards();
+        }
+    };
+
+    function showNewCards(counter) {
+
     }
 
+    function hideCards() {
+        scrollCounter = 10;
+    }
+
+    function currentStateOfApp(elements){
+        let count = scrollCounter;
+        let card_container = document.getElementById('cards');
+        let cards = document.getElementsByClassName('card-box');
+        for(let i = 0;i<cards.length;i++){
+            card_container.removeChild(cards[i]);
+        }
+        for(let i = 0;i<elements.length - scrollCounter;i++){
+            count--;
+            if(count >= 0){
+                card_container.appendChild(elements[i]);
+            }
+        }
+    }
+
+    function clone_cards_fun(clone_arr){
+        for(let i = 0;i<cards_clone.length;i++){
+            clone_arr.push(cards_clone[i]);
+        }
+    }
+
+*/
 </script>
 </body>
 </html>
