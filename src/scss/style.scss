@@ -30,9 +30,6 @@ html, body {
 // main and aside tags
 .content {
   max-width: 1200px;
-  //position: absolute;
-  //z-index: -1;
-  margin-top: 110px;
   border: 3px solid black;
   display: grid;
   grid-template-columns: 80% 20%;
@@ -59,97 +56,4 @@ button {
   .content {
     grid-template-columns: 100%;
   }
-}
-
-//remove later
-
-#cards {
-  display: grid;
-  grid-template-columns: auto auto;
-  justify-items: center;
-  margin-top: 10px;
-}
-
-.card-box {
-  display: grid;
-  justify-items: center;
-  text-align: center;
-  background-color: azure;
-  border: 1px solid black;
-  margin: 10px 10px 10px 10px;
-  grid-template-rows: 50px 65px 190px 170px 40px;
-  & button{
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    height: 35px;
-    background-color: lightblue;
-    &:hover {
-      cursor: pointer;
-      background-color: aquamarine;
-    }
-  }
-}
-
-#control{
-  & button{
-    padding: 5px;
-    border: none;
-    height: 35px;
-    width: 100%;
-    background-color: lightblue;
-    &:hover {
-      cursor: pointer;
-      background-color: aquamarine;
-    }
-  }
-}
-
-#sort-by-date {
-  display: flex;
-  justify-content: space-between;
-  & button{
-    padding: 5px;
-    border: none;
-    height: 35px;
-    width: 100%;
-    background-color: lightblue;
-    &:hover {
-      cursor: pointer;
-      background-color: aquamarine;
-    }
-  }
-  .selected-button {
-    background-color: gray;
-    :hover {
-      background-color: red;
-    }
-  }
-}
-
-#sorting-tags {
-  display: flex;
-  //flex-wrap: wrap;
-  justify-content: space-around;
-  .tag {
-    padding: 5px;
-    background-color: lightblue;
-    height: 35px;
-    width: 100%;
-    text-align: center;
-    &:hover {
-      cursor: pointer;
-      background-color: aquamarine;
-    }
-  }
-  .selected-tag {
-    background-color: gray;
-    :hover {
-      background-color: red;
-    }
-  }
-}
-
-.hide{
-  display: none;
 }

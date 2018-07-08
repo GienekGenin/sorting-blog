@@ -68,19 +68,17 @@
         </div>
     </header>
     <div class="content">
-        <main>
-            <div id="app">
-                <div id="control">
+        <div id="app">
+            <div id="control">
+                <div id="sort-by-date">
                     <button onclick="hideCards()">Hide</button>
-                    <div id="sort-by-date">
-                        <button onclick="sortByDateUp()">Up</button>
-                        <button onclick="sortByDateDown()">Down</button>
-                    </div>
-                    <div id="sorting-tags"></div>
+                    <button onclick="sortByDateUp()">Up</button>
+                    <button onclick="sortByDateDown()">Down</button>
                 </div>
-                <div id="cards"></div>
+                <div id="sorting-tags"></div>
             </div>
-        </main>
+            <div id="cards"></div>
+        </div>
         <aside>
             <div id="author">
                 <img src="./src/assets/img/ava.png" alt="">
@@ -365,9 +363,9 @@
     }
 
     function toggleButton(element) {
-        let buttons_div = document.getElementById('sort-by-date');
-        for (let i = 0; i < buttons_div.children.length; i++) {
-            buttons_div.children[i].setAttribute('class', null);
+        let buttons = document.getElementById('sort-by-date');
+        for(let i = 0;i < buttons.children.length;i++){
+            buttons.children[i].classList.remove('selected-button');
         }
         if (element) {
             element.setAttribute('class', 'selected-button');
@@ -515,7 +513,7 @@
     function sortByDateUp() {
         selected_tags_arr = [];
         toggleDefaultTags();
-        toggleButton(document.getElementById('sort-by-date').children[0]);
+        toggleButton(document.getElementById('sort-by-date').children[1]);
         // console.log('in sortByDateUp');
         localStorage.setItem('lastAction', JSON.stringify({
             'dateUp': true,
@@ -545,7 +543,7 @@
     function sortByDateDown() {
         selected_tags_arr = [];
         toggleDefaultTags();
-        toggleButton(document.getElementById('sort-by-date').children[1]);
+        toggleButton(document.getElementById('sort-by-date').children[2]);
         // console.log('in sortByDateDown');
         localStorage.setItem('lastAction', JSON.stringify({
             'dateUp': false,
