@@ -11,6 +11,20 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
+#control{
+  & button{
+    padding: 5px;
+    border: none;
+    height: 35px;
+    width: 100%;
+    background-color: lightblue;
+    &:hover {
+      cursor: pointer;
+      background-color: aquamarine;
+    }
+  }
+}
+
 #sort-by-date {
   display: flex;
   justify-content: space-between;
