@@ -187,7 +187,7 @@
     let selected_tags_arr = [];
 
     function toggleTag(e) {
-        console.log('in toggle');
+        // console.log('in toggle');
         e.stopPropagation();
         let tag = e.target;
         // can't select more than 3 tags | I wrote it, because there r can be only max of 3 tags
@@ -237,7 +237,7 @@
     // sorting functions
 
     function sortElements(selected) {
-        console.log('in sort');
+        // console.log('in sort');
         let el_to_sort = document.getElementsByClassName('card-box');
         for (let i = 0; i < el_to_sort.length; i++) {
 
@@ -255,7 +255,7 @@
     }
 
     function swapByTagsAndTime() {
-        console.log('in swapByTagsAndTime');
+        // console.log('in swapByTagsAndTime');
         let cards = document.getElementsByClassName('card-box');
         // get all unique indexes
         let allTagIndexes = [];
@@ -373,9 +373,10 @@
     }
 
     function sortByDateUp() {
+        selected_tags_arr = [];
         toggleDefaultTags();
         toggleButton(document.getElementById('sort-by-date').children[0]);
-        console.log('in sortByDateUp');
+        // console.log('in sortByDateUp');
         localStorage.setItem('lastAction', JSON.stringify({
             'dateUp': true,
             'dateDown': false,
@@ -402,9 +403,10 @@
     }
 
     function sortByDateDown() {
+        selected_tags_arr = [];
         toggleDefaultTags();
         toggleButton(document.getElementById('sort-by-date').children[1]);
-        console.log('in sortByDateDown');
+        // console.log('in sortByDateDown');
         localStorage.setItem('lastAction', JSON.stringify({
             'dateUp': false,
             'dateDown': true,
@@ -437,14 +439,12 @@
                 showNewCards(scrollCounter);
             }
         }
-        if (window.pageYOffset < 0) {
-            console.log(window.pageYOffset);
-            // hideCards();
-        }
+        // if (window.pageYOffset < 0) {
+        //     hideCards();
+        // }
     };
 
     function showNewCards(counter) {
-        console.log('showNewCards');
         let count = counter;
         let cards = document.getElementsByClassName('card-box');
         for (let i = 0; i < cards.length; i++) {
@@ -458,7 +458,6 @@
     function hideCards() {
         scrollCounter = 10;
         let cards = document.getElementsByClassName('card-box');
-        console.log('hideCards', cards.length, scrollCounter);
         for (let i = 0; i < cards.length; i++) {
             if (i >= 10) {
                 cards[i].classList.add('hide');
