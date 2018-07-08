@@ -1,1 +1,10 @@
 $marvel-color: #F11E22;
+
+@mixin button_style() {
+  height: 30px;
+  width: 100%;
+  color: wheat;
+  background-color: #F11E22;
+  border: none;
+  text-align: center;
+}

@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Encode+Sans+Condensed);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import "variables";
+
+.tag {
+  @include button_style();
+}
 
 #cards {
   display: grid;
@@ -8,88 +13,26 @@
   margin-top: 10px;
 }
 
-.card-box {
-  display: grid;
-  justify-items: center;
-  text-align: center;
-  background-color: azure;
-  border: 1px solid black;
-  margin: 10px 10px 10px 10px;
-  grid-template-rows: 50px 65px 190px 170px 40px;
-  & button{
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    height: 35px;
-    background-color: lightblue;
-    &:hover {
-      cursor: pointer;
-      background-color: aquamarine;
-    }
-  }
-}
-
-#control{
-  & button{
-    padding: 5px;
-    border: none;
-    height: 35px;
-    width: 100%;
-    background-color: lightblue;
-    &:hover {
-      cursor: pointer;
-      background-color: aquamarine;
-    }
-  }
-}
-
 #sort-by-date {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  & button{
-    height: 30px;
-    width: 100%;
-    color: wheat;
-    background-color: #F11E22;
-    border-radius: 5px;
-    border: none;
-    &:hover {
-      cursor: pointer;
-      background-color: red;
-    }
-  }
-  .selected-button {
-    background-color: gray;
-    :hover {
-      background-color: red;
-    }
-  }
 }
 
 #sorting-tags {
+  width: 100%;
   display: flex;
-  //flex-wrap: wrap;
   justify-content: space-around;
-  .tag {
-    padding: 5px;
-    background-color: lightblue;
-    height: 35px;
-    width: 100%;
-    text-align: center;
-    &:hover {
-      cursor: pointer;
-      background-color: aquamarine;
-    }
-  }
-  .selected-tag {
-    background-color: gray;
-    :hover {
-      background-color: red;
-    }
+  .tag:hover {
+    background-color: red;
+    cursor: pointer;
   }
 }
 
-.hide{
+.selected-tag {
+  background-color: gray;
+}
+
+.hide {
   display: none;
 }
 

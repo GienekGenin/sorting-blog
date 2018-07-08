@@ -223,6 +223,7 @@
         // sortByDateUp();
         let retrievedObject = localStorage.getItem('lastAction');
         console.log(JSON.parse(retrievedObject));
+        localStorage.clear();
         let parsedLocal = JSON.parse(retrievedObject);
         if (parsedLocal !== null) {
             console.log('retrievedObject !== null');
@@ -570,8 +571,8 @@
 
     let scrollCounter = 10;
     window.onscroll = function (event) {
-        // console.log(window.innerHeight,window.pageYOffset,document.body.offsetHeight);
-        if ((window.innerHeight + window.pageYOffset+1) >= document.body.offsetHeight) {
+        console.log(window.innerHeight,window.pageYOffset,document.body.offsetHeight);
+        if ((window.innerHeight + window.pageYOffset+5) >= document.body.offsetHeight) {
             console.log(window.pageYOffset);
             if (scrollCounter <= 40) {
                 scrollCounter = scrollCounter + 10;

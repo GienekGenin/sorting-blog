@@ -6,6 +6,10 @@
 @import "footer";
 @import "variables";
 
+button {
+  @include button_style();
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -35,16 +39,9 @@ html, body {
 
 // main button styling
 button {
-  height: 30px;
-  width: 100%;
-  color: wheat;
-  background-color: $marvel-color;
-  border-radius: 5px;
-  border: none;
   &:hover {
     cursor: pointer;
     background-color: red;
-    transition: 1s;
   }
 }
 
