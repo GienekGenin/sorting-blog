@@ -11,22 +11,42 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-#sorting-tags {
+#sort-by-date {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  .tag {
+  justify-content: space-between;
+  & button{
     padding: 5px;
+    border: none;
     border-radius: 5px;
+    height: 35px;
+    width: 100%;
     background-color: lightblue;
     &:hover {
       cursor: pointer;
       background-color: aquamarine;
     }
   }
-  .selected-tag{
+}
+
+#sorting-tags {
+  display: flex;
+  //flex-wrap: wrap;
+  justify-content: space-around;
+  .tag {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: lightblue;
+    height: 35px;
+    width: 100%;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+      background-color: aquamarine;
+    }
+  }
+  .selected-tag {
     background-color: gray;
-    :hover{
+    :hover {
       background-color: red;
     }
   }
@@ -36,4 +56,5 @@ html, body {
   display: grid;
   grid-template-columns: auto auto;
   justify-items: center;
+  margin-top: 50px;
 }

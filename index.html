@@ -22,8 +22,10 @@
 </head>
 <body>
 <div id="app">
-    <div id="sort-by-date"><button onclick="sortByDateUp()">Up</button ><button onclick="sortByDateDown()">Down</button></div>
-    <div id="sorting-tags"></div>
+    <div id="control">
+        <div id="sort-by-date"><button onclick="sortByDateUp()">Up</button ><button onclick="sortByDateDown()">Down</button></div>
+        <div id="sorting-tags"></div>
+    </div>
     <div id="cards"></div>
 </div>
 <!--<script src="src/index.js"></script>-->
@@ -57,6 +59,7 @@
     }*/
 
     let app = document.getElementById('app');
+    let control = document.getElementById('control');
     let cards = document.getElementById('cards');
     cards.addEventListener('click', (e) => {
         console.log('click cards', e);
@@ -72,7 +75,8 @@
         for (let i = 0; i < j_data.length; i++) {
             createCard(j_data[i]);
         }
-        app.appendChild(tags);
+        control.appendChild(tags);
+        app.appendChild(control);
         app.appendChild(cards);
 
         setDateIndexes();
