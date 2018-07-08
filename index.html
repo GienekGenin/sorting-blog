@@ -179,6 +179,7 @@
         console.log(e);
         e.stopPropagation();
         cards.removeChild(e.path[1]);
+        setDateIndexes();
     }
 
     let selected_tags_arr = [];
@@ -320,9 +321,6 @@
         for (let i = 0; i < cards.length; i++) {
             for (let c = 0; c < sortedDates.length; c++) {
                 if (cards[i].dateIndex === sortedDates[c]) {
-                    //remove later!!!!!!!!!!!!!!!!
-                    dates[i].innerText = c;
-                    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     cards[i].dateIndex = c;
                 }
             }
