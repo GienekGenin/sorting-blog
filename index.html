@@ -16,23 +16,163 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./dist/styles.css">
-    <!--page icon-->
-    <!--<link rel="icon" type="image/png" href=""/>-->
+    <link rel="icon" type="image/png"
+          href="http://a1917.phobos.apple.com/us/r30/Purple/v4/fe/3b/42/fe3b426f-2253-2a2d-b2bf-dbee0e706c0b/mzl.ujqgluvm.png"/>
     <!--<meta http-equiv="refresh" content="1">-->
 </head>
 <body>
-<div id="app">
-    <div id="control">
-        <button onclick="hideCards()">Hide</button>
-        <div id="sort-by-date">
-            <button onclick="sortByDateUp()">Up</button>
-            <button onclick="sortByDateDown()">Down</button>
+<div class="container">
+    <header>
+        <div class="menu-trigger">
+            <a href="#"><img src="./src/assets/img/hamburger.png" alt="" id="hamburger"></a>
         </div>
-        <div id="sorting-tags"></div>
+        <img src="./src/assets/img/Marvel-Logo.png" alt="logo" class="logo">
+        <div class="search-hidden">
+
+        </div>
+        <div class="menu-items-box">
+            <div class="menu-items">
+                <div class="social">
+                    <div class="facebook">
+
+                    </div>
+                    <div class="google">
+
+                    </div>
+                    <div class="tweeter">
+
+                    </div>
+                    <div class="youtube">
+
+                    </div>
+                    <div class="instagram">
+
+                    </div>
+                    <div class="pinterest">
+
+                    </div>
+                </div>
+                <div class="search-box">
+                    <input type="text">
+                    <button></button>
+                </div>
+            </div>
+            <ul>
+                <li><a href="#">Characters</a></li>
+                <li><a href="#">Comics</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">TV</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="content">
+        <main>
+            <div id="app">
+                <div id="control">
+                    <button onclick="hideCards()">Hide</button>
+                    <div id="sort-by-date">
+                        <button onclick="sortByDateUp()">Up</button>
+                        <button onclick="sortByDateDown()">Down</button>
+                    </div>
+                    <div id="sorting-tags"></div>
+                </div>
+                <div id="cards"></div>
+            </div>
+        </main>
+        <aside>
+            <div id="author">
+                <img src="./src/assets/img/ava.png" alt="">
+                <span class="name">Mr Poopybutthole</span>
+                <span class="description">Man that craps ice cream</span>
+            </div>
+            <div class="social">
+                <div class="facebook">
+
+                </div>
+                <div class="google">
+
+                </div>
+                <div class="tweeter">
+
+                </div>
+            </div>
+            <div class="subscribe">
+                <input type="text" placeholder="name">
+                <input type="email" placeholder="email">
+                <button>+ Subscribe</button>
+            </div>
+            <div class="search-comment-menu">
+                <input type="text" placeholder="Search">
+                <button></button>
+            </div>
+            <div class="tags">
+                <span>#love pony</span>
+                <span>#death to teddy bears</span>
+                <span>#JP2GMD</span>
+                <span>#freedom for gaza</span>
+                <span>#build the wall</span>
+                <span>#PH</span>
+                <span>#Hentai - Japan rule</span>
+                <span>#communism will rise again</span>
+                <span>#delete me</span>
+                <span>#incest is baaad thing</span>
+            </div>
+            <div class="comment-box">
+                <div class="comment-body">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvMQEn9s1MCS3khegacahDMxE5_KvLFu41CfNlFHDpN9mjbgx4"
+                         alt="">
+                    <div class="info">
+                        <span class="name">Obama</span>
+                        <span class="comment">This is nuts. How r u even stayed alive?</span>
+                    </div>
+                </div>
+                <div class="comment-body">
+                    <img src="https://res.cloudinary.com/teepublic/image/private/s--c9kcdTc7--/t_Preview/b_rgb:fb9392,c_limit,f_jpg,h_630,q_90,w_630/v1497775393/production/designs/1676022_1.jpg"
+                         alt="">
+                    <div class="info">
+                        <span class="name">Patrick Star</span>
+                        <span class="comment">Fuck my balls. Do such shit all the time.</span>
+                    </div>
+                </div>
+                <div class="comment-body">
+                    <img src="https://www.blasty.pl/upload/upload_mem/thumb_3365545fb79397b689eca392a9284791.jpg"
+                         alt="">
+                    <div class="info">
+                        <span class="name">Wtf Dude</span>
+                        <span class="comment">Great job!</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <footer>
+            <img src="https://cdn.movieweb.com/img.news.tops/NEChZD5TQ2ngFL_1_b/Marvel-Phase-4-Announcements-Coming-After-Avengers-4.jpg"
+                 alt="logo" class="logo">
+            <div class="social">
+                <div class="facebook">
+
+                </div>
+                <div class="google">
+
+                </div>
+                <div class="tweeter">
+
+                </div>
+                <div class="youtube">
+
+                </div>
+                <div class="instagram">
+
+                </div>
+                <div class="pinterest">
+
+                </div>
+            </div>
+            <span>Copyright © 2018 NukeMyHome Technologies</span>
+        </footer>
     </div>
-    <div id="cards"></div>
 </div>
-<!--<script src="src/index.js"></script>-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="./dist/bundle.js"></script>
 <script>
@@ -432,6 +572,7 @@
 
     let scrollCounter = 10;
     window.onscroll = function (event) {
+        // console.log(window.innerHeight,window.pageYOffset,document.body.offsetHeight);
         if ((window.innerHeight + window.pageYOffset+1) >= document.body.offsetHeight) {
             console.log(window.pageYOffset);
             if (scrollCounter <= 40) {

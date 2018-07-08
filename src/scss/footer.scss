@@ -1,0 +1,27 @@
+footer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column: 1 / span 2;
+  background-color: black;
+  color: white;
+  // another marvel logo
+  & .logo {
+    height: 60px;
+  }
+  // copyright span
+  & > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-self: center;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  // hide social icons
+  .social {
+    display: none;
+  }
+}

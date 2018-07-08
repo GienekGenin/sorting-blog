@@ -1,5 +1,11 @@
 @import "variables";
 @import "cards";
+@import "icons";
+@import "header";
+@import "main";
+@import "aside";
+@import "footer";
+@import "variables";
 
 * {
   box-sizing: border-box;
@@ -9,6 +15,80 @@
 
 html, body {
   font-family: Arial, sans-serif;
+  z-index: 0;
+}
+
+// all content in this container
+.container {
+  padding: 0;
+  margin: auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-rows: auto auto auto;
+}
+
+// main and aside tags
+.content {
+  max-width: 1200px;
+  //position: absolute;
+  //z-index: -1;
+  margin-top: 110px;
+  border: 3px solid black;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+// main button styling
+button {
+  height: 30px;
+  width: 100%;
+  color: wheat;
+  background-color: $marvel-color;
+  border-radius: 5px;
+  border: none;
+  &:hover {
+    cursor: pointer;
+    background-color: red;
+    transition: 1s;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  //main content will take hole place
+  //aside goes under main
+  .content {
+    grid-template-columns: 100%;
+  }
+}
+
+//remove later
+
+#cards {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: center;
+  margin-top: 10px;
+}
+
+.card-box {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  background-color: azure;
+  border: 1px solid black;
+  margin: 10px 10px 10px 10px;
+  grid-template-rows: 50px 65px 190px 170px 40px;
+  & button{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    background-color: lightblue;
+    &:hover {
+      cursor: pointer;
+      background-color: aquamarine;
+    }
+  }
 }
 
 #control{

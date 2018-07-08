@@ -1,0 +1,128 @@
+@import "variables";
+
+aside {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: start;
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  // user's profile photos
+  & img {
+    width: 70px;
+    height: 70px;
+    align-self: start;
+    border-radius: 50px;
+  }
+  // subscribe block
+  & input {
+    width: 100%;
+  }
+  & .subscribe {
+    width: 100%;
+    margin-top: 5px;
+    & input{
+      margin-bottom: 5px;
+    }
+  }
+  // user's names
+  & .name {
+    color: red;
+    font-family: fantasy;
+  }
+}
+
+// info about author
+#author {
+  display: grid;
+  width: 100%;
+  & .description {
+    font-family: Bahnschrift;
+    color: black;
+  }
+}
+
+.comment-box {
+  width: 100%;
+  display: grid;
+  margin-top: 15px;
+  & .comment-body {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    & .info {
+      display: grid;
+      padding-left: 10px;
+      & {
+        .comment {
+          font-family: cursive;
+        }
+      }
+      & span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+// search box for comments
+.search-comment-menu {
+  padding-top: 5px;
+  width: 100%;
+  display: flex;
+  & input {
+    width: 80%;
+  }
+  & button {
+    width: 20%;
+    background-color: wheat;
+    background-image: url('https://findicons.com/files/icons/2357/dortmund/32/search.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 28px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    &:hover {
+      background-color: $marvel-color;
+    }
+  }
+}
+
+// tags block
+.tags {
+  width: 100%;
+  & > span {
+    background-color: wheat;
+    font-weight: bold;
+    color: black;
+    border-radius: 5px;
+    font-family: inherit;
+    padding-left: 5px;
+    &:hover {
+      color: $marvel-color;
+      cursor: pointer;
+      background-color: white;
+      transition: 0.5s;
+    }
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  aside{
+    grid-column: 1;
+  }
+
+  // search box for comments
+  .search-comment-menu {
+    & input {
+      width: 90%;
+    }
+    & button {
+      width: 10%;
+      min-width: 30px;
+    }
+  }
+}
