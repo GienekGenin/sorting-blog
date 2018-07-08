@@ -22,6 +22,7 @@
 </head>
 <body>
 <div id="app">
+    <div id="sort-by-date"><button onclick="sortByDateUp()">Up</button ><button onclick="sortByDateDown()">Down</button></div>
     <div id="sorting-tags"></div>
     <div id="cards"></div>
 </div>
@@ -75,7 +76,7 @@
         app.appendChild(cards);
 
         setDateIndexes();
-        // sortByDate();
+        // sortByDateUp();
 
         sortElements();
     }
@@ -191,7 +192,7 @@
             swapByTagsAndTime();
         } else {
             console.log(selected);
-            // sortByDate();
+            // sortByDateUp();
         }
     }
 
@@ -309,8 +310,8 @@
         return Math.floor(diff);
     }
 
-    function sortByDate() {
-        setDateIndexes();
+    function sortByDateUp() {
+        // setDateIndexes();
         let cards = document.getElementsByClassName('card-box');
         let arr = [];
         for (let i = 0; i < cards.length; i++) {
@@ -325,6 +326,23 @@
             swapNodes(cards[i], arr[i]);
             //revert
             // swapNodes(cards[i], arr[cards.length-i-1]);
+        }
+    }
+
+    function sortByDateDown() {
+        // setDateIndexes();
+        let cards = document.getElementsByClassName('card-box');
+        let arr = [];
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < cards.length; c++) {
+                if (cards[i].dateIndex === c) {
+                    // console.log(c);
+                    arr[c] = cards[i];
+                }
+            }
+        }
+        for (let i = 0; i < cards.length; i++) {
+            swapNodes(cards[i], arr[cards.length-i-1]);
         }
     }
 
