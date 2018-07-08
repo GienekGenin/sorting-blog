@@ -22,14 +22,78 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+  .tag{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
   .tag:hover {
-    background-color: red;
+    background-color: black;
     cursor: pointer;
   }
 }
 
+.card-box {
+  background-color: whitesmoke;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 300px;
+  overflow: hidden;
+  box-shadow: 5px 5px 5px 5px gray;
+  margin-bottom: 30px;
+  .date {
+    width: 100%;
+    margin-top: 10px;
+  }
+  h3 {
+    margin-top: 10px;
+    padding-bottom: 5px;
+    height: 60px;
+    font-size: 30px;
+    font-family: Serif;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:hover {
+      cursor: pointer;
+      white-space: normal;
+      overflow: visible;
+    }
+  }
+
+  .description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px;
+    font-family: SansSerif;
+    &:hover {
+      cursor: pointer;
+      white-space: normal;
+      overflow: visible;
+    }
+  }
+  & img{
+    width: 150px;
+    height: 150px;
+    &:hover {
+      cursor: pointer;
+      -webkit-transform: scale(1.5); /* Safari and Chrome */
+      -moz-transform: scale(1.5); /* Firefox */
+      -ms-transform: scale(1.5); /* IE 9 */
+      -o-transform: scale(1.5); /* Opera */
+      transform: scale(1.5);
+      transition: 1s;
+    }
+  }
+}
+
 .selected-tag {
-  background-color: gray;
+  background-color: darkred;
 }
 
 .hide {
