@@ -103,8 +103,8 @@
                 let tags = document.getElementsByClassName('tag');
                 for (let i = 0; i < tags.length; i++) {
                     for (let c = 0; c < parsedLocal.selected_tags.length; c++) {
-                        if(tags[i].innerText === parsedLocal.selected_tags[c]){
-                            tags[i].setAttribute('class','tag selected-tag');
+                        if (tags[i].innerText === parsedLocal.selected_tags[c]) {
+                            tags[i].setAttribute('class', 'tag selected-tag');
                         }
                     }
                 }
@@ -196,6 +196,7 @@
             alert('Remove one tag');
             return;
         }
+        toggleButton();
         tag.classList.toggle('selected-tag');
         if (tag.classList.contains('selected-tag')) {
             selected_tags_arr.push(tag.innerHTML);
@@ -213,6 +214,25 @@
             'selected_tags': selected_tags_arr
         }));
         sortElements(selected_tags_arr);
+    }
+
+    function toggleDefaultTags() {
+        let tags = document.getElementsByClassName('tag');
+        for (let i = 0; i < tags.length; i++) {
+            if (tags[i].classList.contains('selected-tag')) {
+                tags[i].setAttribute('class', 'tag');
+            }
+        }
+    }
+
+    function toggleButton(element) {
+        let buttons_div = document.getElementById('sort-by-date');
+        for (let i = 0; i < buttons_div.children.length; i++) {
+            buttons_div.children[i].setAttribute('class', null);
+        }
+        if(element){
+            element.setAttribute('class','selected-button');
+        }
     }
 
     // sorting functions
@@ -355,7 +375,8 @@
     }
 
     function sortByDateUp() {
-        // setDateIndexes();
+        toggleDefaultTags();
+        toggleButton(document.getElementById('sort-by-date').children[0]);
         console.log('in sortByDateUp');
         localStorage.setItem('lastAction', JSON.stringify({
             'dateUp': true,
@@ -381,7 +402,8 @@
     }
 
     function sortByDateDown() {
-        // setDateIndexes();
+        toggleDefaultTags();
+        toggleButton(document.getElementById('sort-by-date').children[1]);
         console.log('in sortByDateDown');
         localStorage.setItem('lastAction', JSON.stringify({
             'dateUp': false,

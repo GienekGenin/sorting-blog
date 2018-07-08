@@ -26,7 +26,15 @@ html, body {
       background-color: aquamarine;
     }
   }
+  .selected-button {
+    background-color: gray;
+    :hover {
+      background-color: red;
+    }
+  }
 }
+
+
 
 #sorting-tags {
   display: flex;
