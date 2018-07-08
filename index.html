@@ -23,7 +23,10 @@
 <body>
 <div id="app">
     <div id="control">
-        <div id="sort-by-date"><button onclick="sortByDateUp()">Up</button ><button onclick="sortByDateDown()">Down</button></div>
+        <div id="sort-by-date">
+            <button onclick="sortByDateUp()">Up</button>
+            <button onclick="sortByDateDown()">Down</button>
+        </div>
         <div id="sorting-tags"></div>
     </div>
     <div id="cards"></div>
@@ -84,29 +87,29 @@
         let retrievedObject = localStorage.getItem('lastAction');
         console.log(JSON.parse(retrievedObject));
         let parsedLocal = JSON.parse(retrievedObject);
-        if(parsedLocal !== null){
+        if (parsedLocal !== null) {
             console.log('retrievedObject !== null');
-            if(parsedLocal.dateUp === true){
-                console.log('retrievedObject.dateUp === true');
+            if (parsedLocal.dateUp === true) {
                 console.log('up');
                 sortByDateUp();
             }
-            if(parsedLocal.dateDown === true){
-                console.log('retrievedObject.dateDown === true');
+            if (parsedLocal.dateDown === true) {
                 console.log('down');
                 sortByDateDown();
             }
-            if(parsedLocal.tags === true){
-                console.log('retrievedObject.tags === true');
+            if (parsedLocal.tags === true) {
                 console.log('tags');
                 sortElements(parsedLocal.selected_tags);
+                let tags = document.getElementsByClassName('tag');
+                for (let i = 0; i < tags.length; i++) {
+                    for (let c = 0; c < parsedLocal.selected_tags.length; c++) {
+                        if(tags[i].innerText === parsedLocal.selected_tags[c]){
+                            tags[i].setAttribute('class','tag selected-tag');
+                        }
+                    }
+                }
             }
         }
-    }
-
-    //get unique elements from arr
-    function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
     }
 
     function getUniqueTags(j_data) {
@@ -188,7 +191,11 @@
         console.log('in toggle');
         e.stopPropagation();
         let tag = e.target;
-        // убрать возможность выбора больше 3 тэгов - тут
+        // can't select more than 3 tags | I wrote it, because there r can be only max of 3 tags
+        if (selected_tags_arr.length === 3 && !tag.classList.contains('selected-tag')) {
+            alert('Remove one tag');
+            return;
+        }
         tag.classList.toggle('selected-tag');
         if (tag.classList.contains('selected-tag')) {
             selected_tags_arr.push(tag.innerHTML);
@@ -199,7 +206,12 @@
                 }
             }
         }
-        localStorage.setItem('lastAction', JSON.stringify({'dateUp':false,'dateDown':false,'tags':true,'selected_tags':selected_tags_arr}));
+        localStorage.setItem('lastAction', JSON.stringify({
+            'dateUp': false,
+            'dateDown': false,
+            'tags': true,
+            'selected_tags': selected_tags_arr
+        }));
         sortElements(selected_tags_arr);
     }
 
@@ -254,10 +266,10 @@
             }
             arr = arr.sort(sortNumber);
             // console.log(arr);
-            for(let c = 0;c<arr.length;c++){
+            for (let c = 0; c < arr.length; c++) {
                 // console.log(arr[c]);
-                for(let j =0;j<sortedByTagsArr[i].length;j++){
-                    if(arr[c] === sortedByTagsArr[i][j].dateIndex){
+                for (let j = 0; j < sortedByTagsArr[i].length; j++) {
+                    if (arr[c] === sortedByTagsArr[i][j].dateIndex) {
                         arr[c] = sortedByTagsArr[i][j];
                     }
                 }
@@ -269,8 +281,8 @@
         }
         // clone_nodes = clone_nodes.reverse();
         let clone_reverse = [];
-        for(let i = clone_nodes_arr.length - 1;i >= 0;i--){
-            for(let c = 0;c<clone_nodes_arr[i].length;c++){
+        for (let i = clone_nodes_arr.length - 1; i >= 0; i--) {
+            for (let c = 0; c < clone_nodes_arr[i].length; c++) {
                 clone_reverse.push(clone_nodes_arr[i][c]);
             }
         }
@@ -295,6 +307,7 @@
         el.tagIndex = counter;
     }
 
+    //swaps two nodes
     function swapNodes(node1, node2) {
         let node2_copy = node2.cloneNode(true);
         node1.parentNode.insertBefore(node2_copy, node1);
@@ -302,8 +315,14 @@
         node2.parentNode.replaceChild(node2, node2_copy);
     }
 
+    //sort by number
     function sortNumber(a, b) {
         return a - b;
+    }
+
+    //get unique elements from arr
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
     }
 
     function setDateIndexes() {
@@ -338,7 +357,12 @@
     function sortByDateUp() {
         // setDateIndexes();
         console.log('in sortByDateUp');
-        localStorage.setItem('lastAction', JSON.stringify({'dateUp':true,'dateDown':false,'tags':false,'selected_tags':false}));
+        localStorage.setItem('lastAction', JSON.stringify({
+            'dateUp': true,
+            'dateDown': false,
+            'tags': false,
+            'selected_tags': false
+        }));
         let cards = document.getElementsByClassName('card-box');
         let arr = [];
         for (let i = 0; i < cards.length; i++) {
@@ -359,7 +383,12 @@
     function sortByDateDown() {
         // setDateIndexes();
         console.log('in sortByDateDown');
-        localStorage.setItem('lastAction', JSON.stringify({'dateUp':false,'dateDown':true,'tags':false,'selected_tags':false}));
+        localStorage.setItem('lastAction', JSON.stringify({
+            'dateUp': false,
+            'dateDown': true,
+            'tags': false,
+            'selected_tags': false
+        }));
         let cards = document.getElementsByClassName('card-box');
         let arr = [];
         for (let i = 0; i < cards.length; i++) {
@@ -371,7 +400,7 @@
             }
         }
         for (let i = 0; i < cards.length; i++) {
-            swapNodes(cards[i], arr[cards.length-i-1]);
+            swapNodes(cards[i], arr[cards.length - i - 1]);
         }
     }
 
