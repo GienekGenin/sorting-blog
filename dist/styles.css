@@ -2,6 +2,15 @@
   display: grid;
   justify-items: center;
   text-align: center; }
+  .card-box button {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    background-color: lightblue; }
+    .card-box button:hover {
+      cursor: pointer;
+      background-color: aquamarine; }
 
 * {
   box-sizing: border-box;
@@ -11,7 +20,40 @@
 html, body {
   font-family: Arial, sans-serif; }
 
-#app {
+#sort-by-date {
+  display: flex;
+  justify-content: space-between; }
+  #sort-by-date button {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    height: 35px;
+    width: 100%;
+    background-color: lightblue; }
+    #sort-by-date button:hover {
+      cursor: pointer;
+      background-color: aquamarine; }
+
+#sorting-tags {
+  display: flex;
+  justify-content: space-around; }
+  #sorting-tags .tag {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: lightblue;
+    height: 35px;
+    width: 100%;
+    text-align: center; }
+    #sorting-tags .tag:hover {
+      cursor: pointer;
+      background-color: aquamarine; }
+  #sorting-tags .selected-tag {
+    background-color: gray; }
+    #sorting-tags .selected-tag :hover {
+      background-color: red; }
+
+#cards {
   display: grid;
   grid-template-columns: auto auto;
-  justify-items: center; }
+  justify-items: center;
+  margin-top: 50px; }

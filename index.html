@@ -81,8 +81,27 @@
 
         setDateIndexes();
         // sortByDateUp();
-
-        sortElements();
+        let retrievedObject = localStorage.getItem('lastAction');
+        console.log(JSON.parse(retrievedObject));
+        let parsedLocal = JSON.parse(retrievedObject);
+        if(parsedLocal !== null){
+            console.log('retrievedObject !== null');
+            if(parsedLocal.dateUp === true){
+                console.log('retrievedObject.dateUp === true');
+                console.log('up');
+                sortByDateUp();
+            }
+            if(parsedLocal.dateDown === true){
+                console.log('retrievedObject.dateDown === true');
+                console.log('down');
+                sortByDateDown();
+            }
+            if(parsedLocal.tags === true){
+                console.log('retrievedObject.tags === true');
+                console.log('tags');
+                sortElements(parsedLocal.selected_tags);
+            }
+        }
     }
 
     //get unique elements from arr
@@ -165,6 +184,7 @@
     let selected_tags_arr = [];
 
     function toggleTag(e) {
+        console.log('in toggle');
         e.stopPropagation();
         let tag = e.target;
         // убрать возможность выбора больше 3 тэгов - тут
@@ -178,12 +198,14 @@
                 }
             }
         }
+        localStorage.setItem('lastAction', JSON.stringify({'dateUp':false,'dateDown':false,'tags':true,'selected_tags':selected_tags_arr}));
         sortElements(selected_tags_arr);
     }
 
     // sorting functions
 
     function sortElements(selected) {
+        console.log('in sort');
         let el_to_sort = document.getElementsByClassName('card-box');
         for (let i = 0; i < el_to_sort.length; i++) {
 
@@ -195,12 +217,13 @@
             }
             swapByTagsAndTime();
         } else {
-            console.log(selected);
+            // console.log(selected);
             sortByDateUp();
         }
     }
 
     function swapByTagsAndTime() {
+        console.log('in swapByTagsAndTime');
         let cards = document.getElementsByClassName('card-box');
         // get all unique indexes
         let allTagIndexes = [];
@@ -316,6 +339,8 @@
 
     function sortByDateUp() {
         // setDateIndexes();
+        console.log('in sortByDateUp');
+        localStorage.setItem('lastAction', JSON.stringify({'dateUp':true,'dateDown':false,'tags':false,'selected_tags':false}));
         let cards = document.getElementsByClassName('card-box');
         let arr = [];
         for (let i = 0; i < cards.length; i++) {
@@ -335,6 +360,8 @@
 
     function sortByDateDown() {
         // setDateIndexes();
+        console.log('in sortByDateDown');
+        localStorage.setItem('lastAction', JSON.stringify({'dateUp':false,'dateDown':true,'tags':false,'selected_tags':false}));
         let cards = document.getElementsByClassName('card-box');
         let arr = [];
         for (let i = 0; i < cards.length; i++) {
