@@ -30,6 +30,16 @@
 html, body {
   font-family: Arial, sans-serif; }
 
+#control button {
+  padding: 5px;
+  border: none;
+  height: 35px;
+  width: 100%;
+  background-color: lightblue; }
+  #control button:hover {
+    cursor: pointer;
+    background-color: aquamarine; }
+
 #sort-by-date {
   display: flex;
   justify-content: space-between; }
@@ -63,3 +73,6 @@ html, body {
     background-color: gray; }
     #sorting-tags .selected-tag :hover {
       background-color: red; }
+
+.hide {
+  display: none; }
