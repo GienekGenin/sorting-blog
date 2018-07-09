@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="subject" content="Simple blog">
+    <meta name="description" content="Simple blog">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="google" content="nositelinkssearchbox">
+    <meta name="google" content="notranslate">
+    <link rel="me" href="https://www.facebook.com/gennadii.genin" type="text/html">
+    <link rel="me" href="mailto:genin.gennadiigendos2010@yandex.ru">
+    <link rel="me" href="sms:+48792371282">
+    <title>Blog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./dist/styles.css">
+    <link rel="icon" type="image/png"
+          href="http://a1917.phobos.apple.com/us/r30/Purple/v4/fe/3b/42/fe3b426f-2253-2a2d-b2bf-dbee0e706c0b/mzl.ujqgluvm.png"/>
+    <!--<meta http-equiv="refresh" content="1">-->
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="menu-trigger">
+            <a href="#"><img src="./src/assets/img/hamburger.png" alt="" id="hamburger"></a>
+        </div>
+        <img src="./src/assets/img/Marvel-Logo.png" alt="logo" class="logo">
+        <div class="search-hidden">
+
+        </div>
+        <div class="menu-items-box">
+            <div class="menu-items">
+                <div class="social">
+                    <div class="facebook">
+
+                    </div>
+                    <div class="google">
+
+                    </div>
+                    <div class="tweeter">
+
+                    </div>
+                    <div class="youtube">
+
+                    </div>
+                    <div class="instagram">
+
+                    </div>
+                    <div class="pinterest">
+
+                    </div>
+                </div>
+                <div class="search-box">
+                    <input type="text">
+                    <button></button>
+                </div>
+            </div>
+            <ul>
+                <li><a href="#">Characters</a></li>
+                <li><a href="#">Comics</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">TV</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="content">
+        <div id="app">
+            <div id="control">
+                <div id="sort-by-date">
+                    <button onclick="hideCards()">Hide</button>
+                    <button onclick="sortByDateUp()">Up</button>
+                    <button onclick="sortByDateDown()">Down</button>
+                </div>
+                <div id="sorting-tags"></div>
+            </div>
+            <div id="cards"></div>
+        </div>
+        <aside>
+            <div id="author">
+                <img src="./src/assets/img/ava.png" alt="">
+                <span class="name">Mr Poopybutthole</span>
+                <span class="description">Man that craps ice cream</span>
+            </div>
+            <div class="social">
+                <div class="facebook">
+
+                </div>
+                <div class="google">
+
+                </div>
+                <div class="tweeter">
+
+                </div>
+            </div>
+            <div class="subscribe">
+                <input type="text" placeholder="name">
+                <input type="email" placeholder="email">
+                <button>+ Subscribe</button>
+            </div>
+            <div class="search-comment-menu">
+                <input type="text" placeholder="Search">
+                <button></button>
+            </div>
+            <div class="tags">
+                <span>#love pony</span>
+                <span>#death to teddy bears</span>
+                <span>#JP2GMD</span>
+                <span>#freedom for gaza</span>
+                <span>#build the wall</span>
+                <span>#PH</span>
+                <span>#Hentai - Japan rule</span>
+                <span>#communism will rise again</span>
+                <span>#delete me</span>
+                <span>#incest is baaad thing</span>
+            </div>
+            <div class="comment-box">
+                <div class="comment-body">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvMQEn9s1MCS3khegacahDMxE5_KvLFu41CfNlFHDpN9mjbgx4"
+                         alt="">
+                    <div class="info">
+                        <span class="name">Obama</span>
+                        <span class="comment">This is nuts. How r u even stayed alive?</span>
+                    </div>
+                </div>
+                <div class="comment-body">
+                    <img src="https://res.cloudinary.com/teepublic/image/private/s--c9kcdTc7--/t_Preview/b_rgb:fb9392,c_limit,f_jpg,h_630,q_90,w_630/v1497775393/production/designs/1676022_1.jpg"
+                         alt="">
+                    <div class="info">
+                        <span class="name">Patrick Star</span>
+                        <span class="comment">Fuck my balls. Do such shit all the time.</span>
+                    </div>
+                </div>
+                <div class="comment-body">
+                    <img src="https://www.blasty.pl/upload/upload_mem/thumb_3365545fb79397b689eca392a9284791.jpg"
+                         alt="">
+                    <div class="info">
+                        <span class="name">Wtf Dude</span>
+                        <span class="comment">Great job!</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <footer>
+        <img src="https://cdn.movieweb.com/img.news.tops/NEChZD5TQ2ngFL_1_b/Marvel-Phase-4-Announcements-Coming-After-Avengers-4.jpg"
+             alt="logo" class="logo">
+        <div class="social">
+            <div class="facebook">
+
+            </div>
+            <div class="google">
+
+            </div>
+            <div class="tweeter">
+
+            </div>
+            <div class="youtube">
+
+            </div>
+            <div class="instagram">
+
+            </div>
+            <div class="pinterest">
+
+            </div>
+        </div>
+        <span>Copyright © 2018 NukeMyHome Technologies</span>
+    </footer>
+</div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="./dist/bundle.js"></script>
+<script>
+    // fetch data from json
+    window.onload = () => {
+        fetch('https://api.myjson.com/bins/152f9j')
+            .then(response => {
+                response.json().then(json_data => {
+                    createApp(json_data.data);
+                    return window.parent.json_data = json_data;
+                })
+            })
+            .catch(err => {
+                console.log('Woooops, shit happens');
+                console.log(err);
+            })
+    };
+
+    // json structure
+    /*{
+        "title":"Quo repudiandae qui sit.",
+        "description":"Some text",
+        "image":"http://via.placeholder.com/150x150",
+        "createdAt":"0290-01-20T18:19:35.727Z",
+        "tags":[
+        "Business",
+        "Politics",
+        "Sport"]
+    }*/
+
+    let app = document.getElementById('app');
+    let control = document.getElementById('control');
+    let tags = document.getElementById('sorting-tags');
+    tags.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // setting up application
+    function createApp(j_data) {
+        let cards = document.getElementById('cards');
+        let tags_arr = getUniqueTags(j_data);
+        createTag(tags_arr);
+        // create all tags
+        for (let i = 0; i < j_data.length; i++) {
+            createCard(j_data[i]);
+        }
+        control.appendChild(tags);
+        app.appendChild(control);
+        app.appendChild(cards);
+
+        // set date indexes
+        setDateIndexes();
+        // shows only 10 cards
+        hideCards();
+        let retrievedObject = localStorage.getItem('lastAction');
+        console.log(JSON.parse(retrievedObject));
+        localStorage.clear();
+        let parsedLocal = JSON.parse(retrievedObject);
+        if (parsedLocal !== null) {
+            console.log('retrievedObject !== null');
+            if (parsedLocal.dateUp === true) {
+                console.log('up');
+                sortByDateUp();
+            }
+            if (parsedLocal.dateDown === true) {
+                console.log('down');
+                sortByDateDown();
+            }
+            if (parsedLocal.tags === true) {
+                console.log('tags');
+                selected_tags_arr = parsedLocal.selected_tags;
+                sortElements(parsedLocal.selected_tags);
+                let tags = document.getElementsByClassName('tag');
+                for (let i = 0; i < tags.length; i++) {
+                    for (let c = 0; c < parsedLocal.selected_tags.length; c++) {
+                        if (tags[i].innerText === parsedLocal.selected_tags[c]) {
+                            tags[i].setAttribute('class', 'tag selected-tag');
+                        }
+                    }
+                }
+            }
+        } else sortByDateUp();
+    }
+
+    // returns an array of all unique tags from json
+    function getUniqueTags(j_data) {
+        let allTags = [];
+        for (let i = 0; i < j_data.length; i++) {
+            for (let c = 0; c < j_data[i].tags.length; c++) {
+                allTags.push(j_data[i].tags[c]);
+            }
+        }
+        return allTags.filter(onlyUnique);
+    }
+
+    // creates single tag
+    function createTag(tags_arr) {
+        for (let i = 0; i < tags_arr.length; i++) {
+            let tag = document.createElement('span');
+            tag.setAttribute('class', 'tag');
+            tag.setAttribute('onclick', 'toggleTag(event)');
+            let tagText = document.createTextNode(tags_arr[i]);
+            tag.appendChild(tagText);
+            tags.appendChild(tag);
+        }
+    }
+
+    // creates single card
+    function createCard(j_data) {
+        let cards = document.getElementById('cards');
+        let card = document.createElement('div');
+        card.setAttribute('class', 'card-box');
+
+        let deleteButton = document.createElement('button');
+        deleteButton.setAttribute('onclick', 'deleteElement(event)');
+        let deleteButtonText = document.createTextNode('delete');
+        deleteButton.appendChild(deleteButtonText);
+
+        let title = document.createElement('h3');
+        let titleText = document.createTextNode(j_data.title);
+        title.appendChild(titleText);
+
+        let description = document.createElement('span');
+        description.setAttribute('class', 'description');
+        let descriptionText = document.createTextNode(j_data.description);
+        description.appendChild(descriptionText);
+
+        let photo = document.createElement('img');
+        photo.setAttribute('src', j_data.image);
+
+        let date = document.createElement('span');
+        date.setAttribute('class', 'date');
+        let dateText = document.createTextNode(j_data.createdAt);
+        date.appendChild(dateText);
+
+        let tags = document.createElement('ul');
+        for (let i = 0; i < j_data.tags.length; i++) {
+            let tag = document.createElement('li');
+            let tagText = document.createTextNode(j_data.tags[i]);
+            tag.appendChild(tagText);
+            tags.appendChild(tag);
+        }
+
+        card.appendChild(deleteButton);
+        card.appendChild(title);
+        card.appendChild(description);
+        card.appendChild(photo);
+        card.appendChild(date);
+        card.appendChild(tags);
+        cards.appendChild(card);
+    }
+
+    // removes selected element from node
+    function deleteElement(e) {
+        let cards = document.getElementById('cards');
+        console.log(e);
+        e.stopPropagation();
+        cards.removeChild(e.path[1]);
+        setDateIndexes();
+    }
+
+    // user's tag choice
+    let selected_tags_arr = [];
+    // sets styling to the tags and triggers the right action
+    function toggleTag(e) {
+        // console.log('in toggle');
+        e.stopPropagation();
+        let tag = e.target;
+        // can't select more than 3 tags | because there r can be only max of 3 tags
+        if (selected_tags_arr.length === 3 && !tag.classList.contains('selected-tag')) {
+            alert('Remove one tag');
+            return;
+        }
+        // toggleDatesButton();
+        tag.classList.toggle('selected-tag');
+        if (tag.classList.contains('selected-tag')) {
+            selected_tags_arr.push(tag.innerHTML);
+        } else {
+            for (let i = 0; i < selected_tags_arr.length; i++) {
+                if (tag.innerHTML === selected_tags_arr[i]) {
+                    selected_tags_arr.splice(i, 1);
+                }
+            }
+        }
+        // save last choice to local storage
+        localStorage.setItem('lastAction', JSON.stringify({
+            'dateUp': false,
+            'dateDown': false,
+            'tags': true,
+            'selected_tags': selected_tags_arr
+        }));
+        sortElements(selected_tags_arr);
+    }
+
+    // resets styling for tags
+    function toggleDefaultTags() {
+        let tags = document.getElementsByClassName('tag');
+        for (let i = 0; i < tags.length; i++) {
+            if (tags[i].classList.contains('selected-tag')) {
+                tags[i].setAttribute('class', 'tag');
+            }
+        }
+    }
+
+    // changes classes of the elements on click
+    function toggleDatesButton(element) {
+        let buttons = document.getElementById('sort-by-date');
+        for(let i = 0;i < buttons.children.length;i++){
+            buttons.children[i].classList.remove('selected-button');
+        }
+        if (element) {
+            element.setAttribute('class', 'selected-button');
+        }
+    }
+
+    // set indexes to an elements depended on how much difference they've got  with current date
+    function setDateIndexes() {
+        let dates = document.querySelectorAll('[class^="date"]');
+        let cards = document.getElementsByClassName('card-box');
+        let dateIndexes = [];
+        //cards[i].timeIndex
+        for (let i = 0; i < dates.length; i++) {
+            cards[i].dateIndex = checkDiffInDays(dates[i].innerText);
+            dateIndexes.push(checkDiffInDays(dates[i].innerText));
+        }
+
+
+        let sortedDates = dateIndexes.sort(sortNumber);
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < sortedDates.length; c++) {
+                if (cards[i].dateIndex === sortedDates[c]) {
+                    cards[i].dateIndex = c;
+                }
+            }
+        }
+    }
+
+    // sorts elements by date up
+    function sortByDateUp() {
+        selected_tags_arr = [];
+        toggleDefaultTags();
+        toggleDatesButton(document.getElementById('sort-by-date').children[1]);
+        // console.log('in sortByDateUp');
+        localStorage.setItem('lastAction', JSON.stringify({
+            'dateUp': true,
+            'dateDown': false,
+            'tags': false,
+            'selected_tags': false
+        }));
+        let cards = document.getElementsByClassName('card-box');
+        let arr = [];
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < cards.length; c++) {
+                if (cards[i].dateIndex === c) {
+                    // console.log(c);
+                    arr[c] = cards[i];
+                }
+            }
+        }
+        for (let i = 0; i < cards.length; i++) {
+            swapNodes(cards[i], arr[i]);
+            //revert
+            // swapNodes(cards[i], arr[cards.length-i-1]);
+        }
+        showAll();
+        hideCards();
+    }
+
+    // sorts elements by date down
+    function sortByDateDown() {
+        selected_tags_arr = [];
+        toggleDefaultTags();
+        toggleDatesButton(document.getElementById('sort-by-date').children[2]);
+        // console.log('in sortByDateDown');
+        localStorage.setItem('lastAction', JSON.stringify({
+            'dateUp': false,
+            'dateDown': true,
+            'tags': false,
+            'selected_tags': false
+        }));
+        let cards = document.getElementsByClassName('card-box');
+        let arr = [];
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < cards.length; c++) {
+                if (cards[i].dateIndex === c) {
+                    // console.log(c);
+                    arr[c] = cards[i];
+                }
+            }
+        }
+        for (let i = 0; i < cards.length; i++) {
+            swapNodes(cards[i], arr[cards.length - i - 1]);
+        }
+        showAll();
+        hideCards();
+    }
+
+    // picks a sort action depended on users choice
+    function sortElements(selected) {
+        // console.log('in sort');
+        let el_to_sort = document.getElementsByClassName('card-box');
+        for (let i = 0; i < el_to_sort.length; i++) {
+
+        }
+        if (selected && selected.length >= 1) {
+            console.log(selected);
+            for (let i = 0; i < el_to_sort.length; i++) {
+                setIndexesByTags(el_to_sort[i], selected);
+            }
+            swapByTagsAndTime();
+        } else {
+            // console.log(selected);
+            sortByDateUp();
+        }
+    }
+
+    // swaps tags depended on both date and tags parameters
+    function swapByTagsAndTime() {
+        // console.log('in swapByTagsAndTime');
+        let cards = document.getElementsByClassName('card-box');
+        // get all unique indexes
+        let allTagIndexes = [];
+        let uniqueTagsIndexes;
+        for (let i = 0; i < cards.length; i++) {
+            allTagIndexes.push(cards[i].tagIndex);
+        }
+        uniqueTagsIndexes = allTagIndexes.filter(onlyUnique);
+        let sortedByTagsArr = [];
+        for (let c = 0; c < uniqueTagsIndexes.length; c++) {
+            sortedByTagsArr[c] = [];
+        }
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < uniqueTagsIndexes.length; c++) {
+                if (cards[i].tagIndex === c) {
+                    sortedByTagsArr[c].push(cards[i]);
+                }
+            }
+        }
+        // console.log(sortedByTagsArr);
+        let clone_nodes_arr = [];
+        for (let i = 0; i < sortedByTagsArr.length; i++) {
+            let arr = [];
+            for (let c = 0; c < sortedByTagsArr[i].length; c++) {
+                arr.push(sortedByTagsArr[i][c].dateIndex);
+                // console.log(sortedByTagsArr[i][c].dateIndex);
+            }
+            arr = arr.sort(sortNumber);
+            // console.log(arr);
+            for (let c = 0; c < arr.length; c++) {
+                // console.log(arr[c]);
+                for (let j = 0; j < sortedByTagsArr[i].length; j++) {
+                    if (arr[c] === sortedByTagsArr[i][j].dateIndex) {
+                        arr[c] = sortedByTagsArr[i][j];
+                    }
+                }
+            }
+            //this is ordered by tags and than by date arr
+            clone_nodes_arr.push(arr);
+        }
+        // clone_nodes = clone_nodes.reverse();
+        let clone_reverse = [];
+        for (let i = clone_nodes_arr.length - 1; i >= 0; i--) {
+            for (let c = 0; c < clone_nodes_arr[i].length; c++) {
+                clone_reverse.push(clone_nodes_arr[i][c]);
+            }
+        }
+        for (let i = 0; i < cards.length; i++) {
+            swapNodes(cards[i], clone_reverse[i]);
+            //revert
+            // swapNodes(cards[i], arr[cards.length-i-1]);
+        }
+        showAll();
+        hideCards();
+    }
+
+    // sets index to an element depended on how much same tags it has
+    function setIndexesByTags(el, _tags) {
+        let counter = 0;
+        for (let i = 0; i < el.childNodes[5].childNodes.length; i++) {
+            for (let c = 0; c < _tags.length; c++) {
+                let one = el.childNodes[5].childNodes[i].innerText;
+                if (one === _tags[c]) {
+                    ++counter;
+                }
+            }
+        }
+        el.tagIndex = counter;
+    }
+
+    //swaps two nodes
+    function swapNodes(node1, node2) {
+        let node2_copy = node2.cloneNode(true);
+        node1.parentNode.insertBefore(node2_copy, node1);
+        node2.parentNode.insertBefore(node1, node2);
+        node2.parentNode.replaceChild(node2, node2_copy);
+    }
+
+    //sort by number
+    function sortNumber(a, b) {
+        return a - b;
+    }
+
+    //get unique elements from array
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+    }
+
+    // check difference between two dates in days
+    function checkDiffInDays(_date) {
+        let start = moment(_date, "YYYY-MM-DDTHH:mm:ss.SSSSZ");
+        let end = moment();
+        let diff = moment.duration(end.diff(start)).asDays();
+        // console.log(`Difference is: ${diff}`);
+        return Math.floor(diff);
+    }
+
+    //checks how much cards must be shown
+    let scrollCounter = 10;
+
+    // monitoring client's window height
+    window.onscroll = function (event) {
+        // console.log(window.innerHeight,window.pageYOffset,document.body.offsetHeight);
+        // if ((window.innerHeight + window.pageYOffset+5) >= document.body.offsetHeight) {
+        if ((window.innerHeight + window.pageYOffset+1) >= document.body.offsetHeight) {
+            console.log(window.pageYOffset);
+            if (scrollCounter <= 40) {
+                scrollCounter = scrollCounter + 10;
+                showNewCards(scrollCounter);
+            }
+        }
+    };
+
+    // show new cards on scrollCounter
+    function showNewCards(counter) {
+        let count = counter;
+        let cards = document.getElementsByClassName('card-box');
+        for (let i = 0; i < cards.length; i++) {
+            count--;
+            if (i >= 10 && count >= 0) {
+                cards[i].classList.remove('hide');
+            }
+        }
+    }
+
+    // hides all cards
+    function hideCards() {
+        scrollCounter = 10;
+        let cards = document.getElementsByClassName('card-box');
+        for (let i = 0; i < cards.length; i++) {
+            if (i >= 10) {
+                cards[i].classList.add('hide');
+            }
+        }
+    }
+
+    // shows all cards
+    function showAll() {
+        let cards = document.getElementsByClassName('card-box');
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].classList.remove('hide');
+        }
+    }
+
+</script>
+</body>
+</html>

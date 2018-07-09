@@ -1,0 +1,135 @@
+@import url(https://fonts.googleapis.com/css?family=Encode+Sans+Condensed);
+@import "variables";
+
+header {
+  //position: relative;
+  //z-index: 1;
+  background-color: black;
+  display: grid;
+  grid-template-columns: auto auto;
+  // header marvel logo
+  & .logo {
+    height: 110px;
+  }
+  & ul {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+  }
+  & li {
+    align-self: center;
+    padding-left: 5px;
+    display: inline-block;
+    font-family: 'Encode Sans Condensed', sans-serif;
+    font-size: 20px;
+    :hover {
+      text-decoration: underline;
+      color: $marvel-color;
+      transition: 1s;
+    }
+  }
+  & a {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    color: #F8ECC2;
+  }
+}
+
+// Hamburger menu trigger
+.menu-trigger {
+  display: none;
+}
+
+//Social icons block
+.social {
+  display: flex;
+  align-self: center;
+  justify-content: space-around;
+}
+
+// Item container - needed for grid system
+.menu-items-box {
+  display: grid;
+}
+
+// Social icons, and search box: input and button
+.menu-items {
+  display: grid;
+  grid-template-columns: auto auto;
+  & input {
+    width: 150px;
+    height: 30px;
+  }
+  & button {
+    width: 30px;
+    height: 30px;
+    margin-left: -3px;
+    background-image: url('https://findicons.com/files/icons/2357/dortmund/32/search.png');
+    background-repeat: no-repeat;
+  }
+  // Search items container
+  & .search-box {
+    display: flex;
+    align-self: center;
+    justify-content: flex-end;
+    padding-right: 40px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+
+  header {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    height: auto;
+    & .logo {
+      display: flex;
+      align-self: center;
+      justify-self: center;
+    }
+    & ul {
+      display: none;
+      margin-right: 0;
+    }
+    & li {
+      display: block;
+      text-align: center;
+      padding-left: 0;
+      :hover {
+        background-color: $marvel-color;
+        color: wheat;
+      }
+    }
+  }
+
+  //center hamburger box
+  .menu-trigger {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+  }
+
+  // ul will take place of 3 columns
+  .menu-items-box {
+    grid-column: 1 / span 3;
+  }
+
+  // hide unnecessary icons
+  .menu-items {
+    display: none;
+  }
+
+  // hidden search icon
+  .search-hidden {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+  }
+
+  // hamburger icon
+  #hamburger {
+    height: 35px;
+  }
+}

@@ -1,0 +1,73 @@
+// Social icons
+.facebook, .google, .tweeter, .youtube, .instagram, .pinterest {
+  background-image: url('http://www.pngmart.com/files/3/Social-Icons-PNG-Pic.png');
+  background-repeat: no-repeat;
+  background-size: 200px;
+  justify-self: center;
+  height: 31px;
+  width: 31px;
+  display: inline-block;
+  &:hover {
+    transform: rotate(360deg);
+    transition: 1s;
+    cursor: pointer;
+  }
+}
+
+// facebook icon
+.facebook {
+  background-position: -9px -7px;
+}
+
+// tweeter icon
+.tweeter {
+  background-position: -121px -7px;
+}
+
+// google icon
+.google {
+  background-position: -46px -7px;
+}
+// youtube icon
+.youtube{
+  background-position: -141px -37px;
+}
+// instagram icon
+.instagram{
+  background-position: -159px -7px;
+}
+// pinterest icon
+.pinterest{
+  background-position: -84px -7px;
+}
+
+// search icon
+.search {
+  background-image: url('https://findicons.com/files/icons/2357/dortmund/32/search.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+  align-self: center;
+  justify-self: center;
+  height: 32px;
+  width: 32px;
+  // rotate icon 360 on mouse over
+  &:hover {
+    transform: rotate(360deg);
+    transition: 1s;
+    cursor: pointer;
+  }
+}
+
+// hidden minimized search
+.search-hidden {
+  background-image: url('https://findicons.com/files/icons/2357/dortmund/32/search.png');
+  background-repeat: no-repeat;
+  height: 32px;
+  width: 32px;
+  &:hover {
+    transform: rotate(360deg);
+    transition: 1s;
+    cursor: pointer;
+  }
+  display: none;
+}
