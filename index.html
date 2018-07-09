@@ -17,7 +17,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./dist/styles.css">
     <link rel="icon" type="image/png"
-          href="http://a1917.phobos.apple.com/us/r30/Purple/v4/fe/3b/42/fe3b426f-2253-2a2d-b2bf-dbee0e706c0b/mzl.ujqgluvm.png"/>
+          href="src/assets/img/site-ico.png"/>
     <!--<meta http-equiv="refresh" content="1">-->
 </head>
 <body>
@@ -226,13 +226,13 @@
         // shows only 10 cards
         hideCards();
         let retrievedObject = localStorage.getItem('lastAction');
-        console.log(JSON.parse(retrievedObject));
+        // console.log(JSON.parse(retrievedObject));
         localStorage.clear();
         let parsedLocal = JSON.parse(retrievedObject);
         if (parsedLocal !== null) {
-            console.log('retrievedObject !== null');
+            // console.log('retrievedObject !== null');
             if (parsedLocal.dateUp === true) {
-                console.log('up');
+                // console.log('up');
                 sortByDateUp();
             }
             if (parsedLocal.dateDown === true) {
@@ -595,7 +595,7 @@
         // console.log(window.innerHeight,window.pageYOffset,document.body.offsetHeight);
         // if ((window.innerHeight + window.pageYOffset+5) >= document.body.offsetHeight) {
         if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-            console.log(window.pageYOffset);
+            // console.log(window.pageYOffset);
             if (scrollCounter <= 40) {
                 scrollCounter = scrollCounter + 10;
                 showNewCards(scrollCounter);

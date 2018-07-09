@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Encode+Sans+Condensed);
+@import url(https://fonts.googleapis.com/css?family=Gaegu);
 $marvel-color: #F11E22;
 
 @mixin button_style() {
@@ -7,4 +9,12 @@ $marvel-color: #F11E22;
   background-color: #F11E22;
   border: none;
   text-align: center;
+}
+
+a, li, span, button {
+  font-family: 'Encode Sans Condensed', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Gaegu', cursive !important;
 }
