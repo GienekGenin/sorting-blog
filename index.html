@@ -174,6 +174,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="./dist/bundle.js"></script>
 <script>
+    // fetch data from json
     window.onload = () => {
         fetch('https://api.myjson.com/bins/152f9j')
             .then(response => {
@@ -207,10 +208,12 @@
         e.stopPropagation();
     });
 
+    // setting up application
     function createApp(j_data) {
         let cards = document.getElementById('cards');
         let tags_arr = getUniqueTags(j_data);
-        createTags(tags_arr);
+        createTag(tags_arr);
+        // create all tags
         for (let i = 0; i < j_data.length; i++) {
             createCard(j_data[i]);
         }
@@ -218,9 +221,10 @@
         app.appendChild(control);
         app.appendChild(cards);
 
+        // set date indexes
         setDateIndexes();
+        // shows only 10 cards
         hideCards();
-        // sortByDateUp();
         let retrievedObject = localStorage.getItem('lastAction');
         console.log(JSON.parse(retrievedObject));
         localStorage.clear();
@@ -251,6 +255,7 @@
         } else sortByDateUp();
     }
 
+    // returns an array of all unique tags from json
     function getUniqueTags(j_data) {
         let allTags = [];
         for (let i = 0; i < j_data.length; i++) {
@@ -261,7 +266,8 @@
         return allTags.filter(onlyUnique);
     }
 
-    function createTags(tags_arr) {
+    // creates single tag
+    function createTag(tags_arr) {
         for (let i = 0; i < tags_arr.length; i++) {
             let tag = document.createElement('span');
             tag.setAttribute('class', 'tag');
@@ -272,6 +278,7 @@
         }
     }
 
+    // creates single card
     function createCard(j_data) {
         let cards = document.getElementById('cards');
         let card = document.createElement('div');
@@ -316,6 +323,7 @@
         cards.appendChild(card);
     }
 
+    // removes selected element from node
     function deleteElement(e) {
         let cards = document.getElementById('cards');
         console.log(e);
@@ -324,18 +332,19 @@
         setDateIndexes();
     }
 
+    // user's tag choice
     let selected_tags_arr = [];
-
+    // sets styling to the tags and triggers the right action
     function toggleTag(e) {
         // console.log('in toggle');
         e.stopPropagation();
         let tag = e.target;
-        // can't select more than 3 tags | I wrote it, because there r can be only max of 3 tags
+        // can't select more than 3 tags | because there r can be only max of 3 tags
         if (selected_tags_arr.length === 3 && !tag.classList.contains('selected-tag')) {
             alert('Remove one tag');
             return;
         }
-        toggleButton();
+        // toggleDatesButton();
         tag.classList.toggle('selected-tag');
         if (tag.classList.contains('selected-tag')) {
             selected_tags_arr.push(tag.innerHTML);
@@ -346,6 +355,7 @@
                 }
             }
         }
+        // save last choice to local storage
         localStorage.setItem('lastAction', JSON.stringify({
             'dateUp': false,
             'dateDown': false,
@@ -355,6 +365,7 @@
         sortElements(selected_tags_arr);
     }
 
+    // resets styling for tags
     function toggleDefaultTags() {
         let tags = document.getElementsByClassName('tag');
         for (let i = 0; i < tags.length; i++) {
@@ -364,7 +375,8 @@
         }
     }
 
-    function toggleButton(element) {
+    // changes classes of the elements on click
+    function toggleDatesButton(element) {
         let buttons = document.getElementById('sort-by-date');
         for(let i = 0;i < buttons.children.length;i++){
             buttons.children[i].classList.remove('selected-button');
@@ -374,8 +386,89 @@
         }
     }
 
-    // sorting functions
+    // set indexes to an elements depended on how much difference they've got  with current date
+    function setDateIndexes() {
+        let dates = document.querySelectorAll('[class^="date"]');
+        let cards = document.getElementsByClassName('card-box');
+        let dateIndexes = [];
+        //cards[i].timeIndex
+        for (let i = 0; i < dates.length; i++) {
+            cards[i].dateIndex = checkDiffInDays(dates[i].innerText);
+            dateIndexes.push(checkDiffInDays(dates[i].innerText));
+        }
 
+
+        let sortedDates = dateIndexes.sort(sortNumber);
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < sortedDates.length; c++) {
+                if (cards[i].dateIndex === sortedDates[c]) {
+                    cards[i].dateIndex = c;
+                }
+            }
+        }
+    }
+
+    // sorts elements by date up
+    function sortByDateUp() {
+        selected_tags_arr = [];
+        toggleDefaultTags();
+        toggleDatesButton(document.getElementById('sort-by-date').children[1]);
+        // console.log('in sortByDateUp');
+        localStorage.setItem('lastAction', JSON.stringify({
+            'dateUp': true,
+            'dateDown': false,
+            'tags': false,
+            'selected_tags': false
+        }));
+        let cards = document.getElementsByClassName('card-box');
+        let arr = [];
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < cards.length; c++) {
+                if (cards[i].dateIndex === c) {
+                    // console.log(c);
+                    arr[c] = cards[i];
+                }
+            }
+        }
+        for (let i = 0; i < cards.length; i++) {
+            swapNodes(cards[i], arr[i]);
+            //revert
+            // swapNodes(cards[i], arr[cards.length-i-1]);
+        }
+        showAll();
+        hideCards();
+    }
+
+    // sorts elements by date down
+    function sortByDateDown() {
+        selected_tags_arr = [];
+        toggleDefaultTags();
+        toggleDatesButton(document.getElementById('sort-by-date').children[2]);
+        // console.log('in sortByDateDown');
+        localStorage.setItem('lastAction', JSON.stringify({
+            'dateUp': false,
+            'dateDown': true,
+            'tags': false,
+            'selected_tags': false
+        }));
+        let cards = document.getElementsByClassName('card-box');
+        let arr = [];
+        for (let i = 0; i < cards.length; i++) {
+            for (let c = 0; c < cards.length; c++) {
+                if (cards[i].dateIndex === c) {
+                    // console.log(c);
+                    arr[c] = cards[i];
+                }
+            }
+        }
+        for (let i = 0; i < cards.length; i++) {
+            swapNodes(cards[i], arr[cards.length - i - 1]);
+        }
+        showAll();
+        hideCards();
+    }
+
+    // picks a sort action depended on users choice
     function sortElements(selected) {
         // console.log('in sort');
         let el_to_sort = document.getElementsByClassName('card-box');
@@ -394,6 +487,7 @@
         }
     }
 
+    // swaps tags depended on both date and tags parameters
     function swapByTagsAndTime() {
         // console.log('in swapByTagsAndTime');
         let cards = document.getElementsByClassName('card-box');
@@ -452,6 +546,7 @@
         hideCards();
     }
 
+    // sets index to an element depended on how much same tags it has
     function setIndexesByTags(el, _tags) {
         let counter = 0;
         for (let i = 0; i < el.childNodes[5].childNodes.length; i++) {
@@ -478,33 +573,13 @@
         return a - b;
     }
 
-    //get unique elements from arr
+    //get unique elements from array
     function onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
     }
 
-    function setDateIndexes() {
-        let dates = document.querySelectorAll('[class^="date"]');
-        let cards = document.getElementsByClassName('card-box');
-        let dateIndexes = [];
-        //cards[i].timeIndex
-        for (let i = 0; i < dates.length; i++) {
-            cards[i].dateIndex = checkHours(dates[i].innerText);
-            dateIndexes.push(checkHours(dates[i].innerText));
-        }
-
-
-        let sortedDates = dateIndexes.sort(sortNumber);
-        for (let i = 0; i < cards.length; i++) {
-            for (let c = 0; c < sortedDates.length; c++) {
-                if (cards[i].dateIndex === sortedDates[c]) {
-                    cards[i].dateIndex = c;
-                }
-            }
-        }
-    }
-
-    function checkHours(_date) {
+    // check difference between two dates in days
+    function checkDiffInDays(_date) {
         let start = moment(_date, "YYYY-MM-DDTHH:mm:ss.SSSSZ");
         let end = moment();
         let diff = moment.duration(end.diff(start)).asDays();
@@ -512,65 +587,10 @@
         return Math.floor(diff);
     }
 
-    function sortByDateUp() {
-        selected_tags_arr = [];
-        toggleDefaultTags();
-        toggleButton(document.getElementById('sort-by-date').children[1]);
-        // console.log('in sortByDateUp');
-        localStorage.setItem('lastAction', JSON.stringify({
-            'dateUp': true,
-            'dateDown': false,
-            'tags': false,
-            'selected_tags': false
-        }));
-        let cards = document.getElementsByClassName('card-box');
-        let arr = [];
-        for (let i = 0; i < cards.length; i++) {
-            for (let c = 0; c < cards.length; c++) {
-                if (cards[i].dateIndex === c) {
-                    // console.log(c);
-                    arr[c] = cards[i];
-                }
-            }
-        }
-        for (let i = 0; i < cards.length; i++) {
-            swapNodes(cards[i], arr[i]);
-            //revert
-            // swapNodes(cards[i], arr[cards.length-i-1]);
-        }
-        showAll();
-        hideCards();
-    }
-
-    function sortByDateDown() {
-        selected_tags_arr = [];
-        toggleDefaultTags();
-        toggleButton(document.getElementById('sort-by-date').children[2]);
-        // console.log('in sortByDateDown');
-        localStorage.setItem('lastAction', JSON.stringify({
-            'dateUp': false,
-            'dateDown': true,
-            'tags': false,
-            'selected_tags': false
-        }));
-        let cards = document.getElementsByClassName('card-box');
-        let arr = [];
-        for (let i = 0; i < cards.length; i++) {
-            for (let c = 0; c < cards.length; c++) {
-                if (cards[i].dateIndex === c) {
-                    // console.log(c);
-                    arr[c] = cards[i];
-                }
-            }
-        }
-        for (let i = 0; i < cards.length; i++) {
-            swapNodes(cards[i], arr[cards.length - i - 1]);
-        }
-        showAll();
-        hideCards();
-    }
-
+    //checks how much cards must be shown
     let scrollCounter = 10;
+
+    // monitoring client's window height
     window.onscroll = function (event) {
         // console.log(window.innerHeight,window.pageYOffset,document.body.offsetHeight);
         // if ((window.innerHeight + window.pageYOffset+5) >= document.body.offsetHeight) {
@@ -583,6 +603,7 @@
         }
     };
 
+    // show new cards on scrollCounter
     function showNewCards(counter) {
         let count = counter;
         let cards = document.getElementsByClassName('card-box');
@@ -594,6 +615,7 @@
         }
     }
 
+    // hides all cards
     function hideCards() {
         scrollCounter = 10;
         let cards = document.getElementsByClassName('card-box');
@@ -604,11 +626,11 @@
         }
     }
 
+    // shows all cards
     function showAll() {
         let cards = document.getElementsByClassName('card-box');
         for (let i = 0; i < cards.length; i++) {
             cards[i].classList.remove('hide');
-
         }
     }
 
