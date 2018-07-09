@@ -594,7 +594,7 @@
     window.onscroll = function (event) {
         // console.log(window.innerHeight,window.pageYOffset,document.body.offsetHeight);
         // if ((window.innerHeight + window.pageYOffset+5) >= document.body.offsetHeight) {
-        if ((window.innerHeight + window.pageYOffset+1) >= document.body.offsetHeight) {
+        if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
             console.log(window.pageYOffset);
             if (scrollCounter <= 40) {
                 scrollCounter = scrollCounter + 10;
