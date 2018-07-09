@@ -237,6 +237,7 @@
             }
             if (parsedLocal.tags === true) {
                 console.log('tags');
+                selected_tags_arr = parsedLocal.selected_tags;
                 sortElements(parsedLocal.selected_tags);
                 let tags = document.getElementsByClassName('tag');
                 for (let i = 0; i < tags.length; i++) {
@@ -572,16 +573,14 @@
     let scrollCounter = 10;
     window.onscroll = function (event) {
         // console.log(window.innerHeight,window.pageYOffset,document.body.offsetHeight);
-        if ((window.innerHeight + window.pageYOffset+5) >= document.body.offsetHeight) {
+        // if ((window.innerHeight + window.pageYOffset+5) >= document.body.offsetHeight) {
+        if ((window.innerHeight + window.pageYOffset+1) >= document.body.offsetHeight) {
             console.log(window.pageYOffset);
             if (scrollCounter <= 40) {
                 scrollCounter = scrollCounter + 10;
                 showNewCards(scrollCounter);
             }
-        }//
-        // if (window.pageYOffset < 0) {
-        //     hideCards();
-        // }
+        }
     };
 
     function showNewCards(counter) {
